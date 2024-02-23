@@ -10,9 +10,13 @@ Python 3.7 or higher
 Libraries Needed Below
 
 OpenCV2 (cv2)
+
 os
+
 shutil
+
 ultralytics
+
 csv
 
 # Use
