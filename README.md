@@ -7,7 +7,7 @@ https://docs.ultralytics.com/
 # Requirements
 Python 3.7 or higher
 
-Libraries Needed Below
+Libraries:
 
 OpenCV2 (cv2)
 
