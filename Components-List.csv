@@ -1,0 +1,34 @@
+﻿Class ID,Name,Part No.,Description,Related Parts
+0,Invacare Action 2 NG,N/A,The Invacare Action 2 NG wheelchair as a whole,"1425473,1430846,1425601,SP1578038-0653,SP1578039-0653,1432595,1498423,1498496,SP1584032,1548571-7035,1430291,1531495,1530620,1530614,1478467,1434561-0010,SP1639529,SP1639530,SP1584369"
+1,Handle Invacare for backrest,1425473,"The handle for the Action 2 NG backrest, attached to the backrest tube. Used by caregivers and staff to hold while transporting the chair or its user.",1430846
+2,Backrest tube fixed,1430846,Tube that holds and supports the backrest of the wheelchair.,1425473
+3,Skirtguard black,1425601,"Skirtguard for the armrest, provides cover for the assembly.","SP1578038-0653,SP1578039-0653"
+4,Armrest n1 tube support L,SP1578038-0653,Tube that holds the skirtguard and armrest pad in place. For the left side specifically.,"1425601,1432595"
+5,Armrest n1 tube support R,SP1578039-0653,Tube that holds the skirtguard and armrest pad in place. For the right side specifically.,"1425601,1432595"
+6,Long armpad + tube + screw,1432595,The armrest padding and the tube it rests on. One for each arm to the left & right sides of the Action 2 NG.,"SP1578038-0653,SP1578039-0653"
+7,24 standard wheels,1498423,"Rear wheel of the wheelchair, manual use.",1498496
+8,Kit Quick release axel + Elliptical spacer washer,1498496,Axel on which the rear wheel is attached to & spins.,1498423
+9,Front wheels for alu forks with support,SP1584032,Front-most wheels of the wheelchair. Provides stability.,1548571-7035
+10,Fork with fixed support,1548571-7035,Secures the castor wheels at the front of the wheelchair.,SP1584032
+11,Backrest upholstery,1430291,"Upholstery for the Action 2 NG, supports the user's back.",1430846
+12,Padded seat upholstery,1531495,The seat and its covering for the Action 2 NG wheelchair.,
+13,Footrest fixed L,1530620,The left footpanel for the Action 2 NG.,"1478467,1434561-0010"
+14,Footrest fixed R,1530614,The right footpanel for the Action 2 NG.,"1478467,1434561-0010"
+15,Kit heels strap small adjustable,1478467,"Strap that is attached to the footrests, helps keep the user's foot in place and from bumping into the wheelchair.","1530620,1530614"
+16,Footrest Tube short,1434561-0010,Tube that connected the footrest to the hanger.,"1530620,1530614,SP1584369"
+17,Complet Push Brake Black Standard L,SP1639529,Brake that halts the left wheel when pushed down.,
+18,Complet Push Brake Black Standard R,SP1639530,Brake that halts the right wheel when pushed down.,
+19,Hangar fixed 80 Alu,SP1584369,Hanger on which the footrest is attached. Set at an 80 degree angle.,1434561-0010
+20,Invacare Ben 9 NG,N/A,The Invacare Ben 9 NG in its entirety,"1532129,1528917,9000/33BLK,9000/27BLK,9000/42BR,8300/21,12BLKPADKIT,9003/10/02BLKHa,1190/00WPBLK,1315/02WPLWBLK,1425642,1425643"
+21,Padded seat upholstery,1532129,Upholstery that covers the Ben 9 NG seat cushion,
+22,Back Canvas Kit,1528917,Upholstry that supports the user's back while sitting,1430846
+23,Legrest Hangar Assembly L,9000/33BLK,Legrest hangar assembly on which the footplate is attached. Left-hand side.,9000/42BR
+24,Legrest Hangar Assembly R,9000/27BLK,Legrest hangar assembly on which the footplate is attached. Right-hand side.,9000/42BR
+25,Footplate Assembly,9000/42BR,"Assembly for the Ben 9 NG footplate, attached to the legrest hangar. Comes in left and right variaties.","9003/10/02BLK,9000/27BLK,8300/21"
+26,Heel Loop Assembly,8300/21,Strap to help keep the user's foot in-place when resting on the footplate.,9000/42BR
+27,Black Armpad Kit,12BLKPADKIT,Armpad for the user to rest their arm on.,9003/10/02BLK
+28,Armrest Panel Black,9003/10/02BLK,Panel for the armrest that covers the assembly.,12BLKPADKIT
+29,Front Castor Assembly,1190/00WPBLK,Assembly for the front castor wheel.,
+30,Plastic Wheel Wide Profile Solid Tyre,1315/02WPLWBLK,Plastic rear wheel for the Ben 9 NG wheelchair.,
+31,Reverse push to lock brake L,1425642,Standard push lock for the Ben 9 NG. Left-hand side.,
+32,Reverse push to lock brake R,1425643,Standard push lock for the Ben 9 NG. Right-hand side.,
