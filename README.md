@@ -7,7 +7,7 @@ https://docs.ultralytics.com/
 # Requirements
 Python 3.7 or higher
 
-Libraries:
+Libraries Needed Below
 OpenCV2 (cv2)
 os
 shutil
