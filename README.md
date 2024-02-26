@@ -30,7 +30,9 @@ Files generated are numbered sequentially, with image & text files being generat
 
 # Future Developments
 "Display" command - request an annotated image/video or text description to be displayed.
+
 "Delete" or "Clear" commands - delete files that are no longer needed from the CLI.
+
 Filetype accommodation - allowing a wider range of image/video filetypes to be input.
 
 Other features - damage assessment, detection of more varied components, etc - are limited by the wheelchair image data available for training. Please be patient!
