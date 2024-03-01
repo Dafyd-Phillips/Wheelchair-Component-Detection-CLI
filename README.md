@@ -20,13 +20,17 @@ ultralytics
 csv
 
 # Use
-Image prediction: enter a directory to a .jpg or .png image to generate an annotated version of the image & a text file describing the components found. These are saved in their respective local directories.
+predict [image/video directory]: enter a directory to a .jpg or .png image to generate an annotated version of the image & a text file describing the components found. These are saved in their respective local directories. Enter a directory to a .mp4 file to generate an annotated version. A temporary directory is created to store the individual frames to generate the annotated video, after which the directory & its contents are deleted. Videos are saved in the respective local directory.
 
-Video prediction: enter a directory to a .mp4 file to generate an annotated version. A temporary directory is created to store the individual frames to generate the annotated video, after which the directory & its contents are deleted. Videos are saved in the respective local directory.
+display --image/--description/--video [file_no]: display an annotated image, its description, or a video file. Files are saved & named in sequential order, starting from "1", with image and text files being generated as a pair.
 
-Type 'q' to exit the program.
+eg display --description 4: display the text description for image file 4.
 
-Files generated are numbered sequentially, with image & text files being generated as pairs.
+delete --image/video [file_no]: delete a single file. Both images and their respective text descriptions are deleted at once.
+
+clear: deletes every annotated file and discription.
+
+quit: closes the program
 
 # Future Developments
 "Display" command - request an annotated image/video or text description to be displayed.
