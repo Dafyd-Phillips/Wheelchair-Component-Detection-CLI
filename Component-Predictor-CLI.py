@@ -185,9 +185,9 @@ class InputOutputMediator():
 # User Interface class: passes image/video directory input to the mediator & utilies prediction results for file generation
 class CommandLineIO():
     mediator = InputOutputMediator()
-    image_file_index = 0
-    video_file_index = 0
-    text_file_index = 0
+    image_file_index = 1
+    video_file_index = 1
+    text_file_index = 1
 
 # initialising: get the number of files in each folder.
     def __init__(self):
@@ -201,16 +201,28 @@ class CommandLineIO():
 
         # check number of files 
         for root, dir, files in os.walk("./Image-Predictions"):
-            no_of_files = len(files)
-            self.image_file_index += no_of_files
+            if files:
+                latest_file = files[-1]
+                latest_file_split = latest_file.split(".")
+
+                file_no = latest_file_split[0]
+                self.image_file_index += int(file_no)
 
         for root, dir, files in os.walk("./Video-Predictions"):
-            no_of_files = len(files)
-            self.video_file_index += no_of_files
+            if files:
+                latest_file = files[-1]
+                latest_file_split = latest_file.split(".")
+
+                file_no = latest_file_split[0]
+                self.image_file_index += int(file_no)
         
         for root, dir, files in os.walk("./Image-Prediction-Descriptions"):
-            no_of_files = len(files)
-            self.text_file_index += no_of_files
+            if files:
+                latest_file = files[-1]
+                latest_file_split = latest_file.split(".")
+
+                file_no = latest_file_split[0]
+                self.text_file_index += int(file_no)
 
     def image_prediction(self, dir):
         try:
@@ -225,7 +237,7 @@ class CommandLineIO():
         print("PREDICTION DATA: ", prediction_data)
 
         print("Generating annotated image in Image-Predictions.....")
-        imagename = "./Image-Predictions/frame_prediction_" + str(self.image_file_index) + ".png"
+        imagename = "./Image-Predictions/" + str(self.image_file_index) + ".png"
         cv2.imwrite(imagename, annotated_image)
         self.image_file_index += 1
 
@@ -241,7 +253,7 @@ class CommandLineIO():
             print("predict: ", predict)
             component_info.append(self.mediator.get_component_data(predict))
 
-        textname = "./Image-Prediction-Descriptions/component_data_" + str(self.text_file_index) + ".txt"
+        textname = "./Image-Prediction-Descriptions/" + str(self.text_file_index) + ".txt"
         with open(textname, "w") as file:
 
             for component in component_info:
@@ -296,7 +308,7 @@ class CommandLineIO():
         else:
             print("Video frames failed to generate!")
 
-        video_filename = "./Video-Predictions/annotated_video_" + str(self.video_file_index) + ".mp4"
+        video_filename = "./Video-Predictions/" + str(self.video_file_index) + ".mp4"
         new_video=cv2.VideoWriter(video_filename, cv2.VideoWriter.fourcc('M', 'P', '4', 'V'), 25, (720, 576))
 
         for frames in range(0, len(frame_list)):
@@ -306,26 +318,140 @@ class CommandLineIO():
         shutil.rmtree("./Temp-Video-Frames")
 
         print("Video prediction successful!")
-        
+    
+    def display_image_prediction(self, file_no):
+        print("Displaying image.....")
+        dir = "./Image-Predictions/" + str(file_no) + ".png"
+        annotated_image = cv2.imread(dir)
+
+        cv2.imshow(str(dir), annotated_image)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+
+    def display_image_description(self, file_no):
+        dir = "./Image-Prediction-Descriptions/" + str(file_no) + ".txt"
+        description = open(dir)
+
+        for line in description:
+            print(line.strip())
+
+        description.close()
+
+    def display_video_prediction(self, file_no):
+        dir = "./Video-Predictions/" + str(file_no) + ".mp4"
+        capture = cv2.VideoCapture(dir)
+
+        while capture.isOpened():
+            success, frame = capture.read()
+
+            if success:
+                cv2.imshow(dir, frame)
+            
+                if cv2.waitKey(1) & 0xFF == ord("q"):
+                    break
+            else:
+                break
+
+        capture.release()
+        cv2.destroyAllWindows()
+            
+    def delete_image(self, file_no):
+        confirm = input("You are about to delete this image & text description associated with it. Proceed? ")
+
+        if confirm.lower() == "y":
+            image = "./Image-Predictions/" + str(file_no) + ".png"
+            text = "./Image-Prediction-Descriptions/" + str(file_no) + ".txt"
+            os.remove(image)
+            os.remove(text)
+        else:
+            return None
+
+    def delete_video(self, file_no):
+        confirm = input("You are about to delete this video. Proceed? ")
+
+        if confirm.lower() == "y":
+            video = "./Video_Predictions/" + str(file_no) + ".mp4"
+            os.remove(video)
+        else:
+            return None
+
+    def clear_files(self):
+        confirm = input("YOU ARE ABOUT TO DELETE ALL PREDICTIONS. Proceed? ")
+
+        if confirm.lower() == "y":
+            shutil.rmtree("./Image-Predictions")
+            shutil.rmtree("./Image-Prediction-Descriptions")
+            shutil.rmtree("./Video_Predictions")
+        else:
+            return None
+
+        os.makedirs("./Image-Predictions")
+        os.makedirs("./Image-Prediction-Descriptions")
+        os.makedirs("./Video_Predictions")
+
+#    def help_command(self, command):
+#        if command == "predict":
+#            print("Input a filepath to an image or video file.\nSupports jpg, png, and mp4 formats.")
+#        elif command == "display":
+#            print("Request an annotated image or video file (starting from 0).\n--image for images & descriptions, --videos for annotated videos.")
+#        elif command == "delete":
+#            print("Delete an image & associated text description or an annotated video (starting from 0).")
+#        elif command == "clear":
+#            print("Deleted all annotated files & descriptions.")
+
     def main_loop(self):
         quit_program = False
 
         while quit_program == False:
-            cl_input = input("Input still image or video directory, or q to quit: ")
-            print("cl_input: ", cl_input)
+            cl_input = input("Awaiting input: ")
+            split_input = cl_input.split(" ")
+            command = split_input[0]
 
-            if cl_input.lower() == 'q':
-                quit_program = True
-            else:
-                split_dir = cl_input.split(".")
-                filetype = split_dir[-1]
+            match command:
+                case "predict":
+                    directory = split_input[1]
+                    split_dir = directory.split(".")
+                    filetype = split_dir[-1]
 
-                if filetype.lower() == 'jpg' or filetype.lower() == 'png':
-                    self.image_prediction(cl_input)
-                elif filetype.lower() == 'mp4':
-                    self.video_prediction(cl_input)
-                else:
-                    print("Invalid path: ", cl_input)
+                    if filetype.lower() == 'jpg' or filetype.lower() == 'png':
+                        self.image_prediction(directory)
+                    elif filetype.lower() == 'mp4':
+                        self.video_prediction(directory)
+                    else:
+                        print("Invalid path: ", directory)
+                
+                case "display":
+                    file_requested = split_input[1]
+                    file_no = split_input[2]
+
+                    if file_requested.lower() == "--image":
+                        self.display_image_prediction(file_no)
+                    elif file_requested.lower() == '--video':
+                        self.display_video_prediction(file_no)
+                    elif file_requested.lower() == '--description':
+                        self.display_image_description(file_no)
+                    else:
+                        print("Please specify what file you want to display\n--image, --desciption, or --video")
+                
+                case "delete":
+                    file_requested = split_input[1]
+                    file_no = split_input[2]
+
+                    if file_requested.lower() == "--image":
+                        self.delete_image(file_no)
+                    elif file_requested.lower() == "--video":
+                        self.delete_video(file_no) 
+                    else:
+                        print("Please specify what file you want to delete\n--image or --video")
+
+                case "clear":
+                    self.clear_files()
+
+                case "quit":
+                    quit_program = True
+                
+                case _:
+                    print("Please enter a valid command")
 
 
 if __name__ == "__main__":
